@@ -9,10 +9,6 @@ import kotlin.random.Random
 
 class ChatApi {
 
-    companion object {
-        private const val MAXIMUM_RESPONSE_DELAY = 5000L
-    }
-
     private val responses = listOf(
         "Отлично!",
         "Понял.",
@@ -89,10 +85,14 @@ class ChatApi {
     fun getReply(): Flow<String> = flow {
         while (currentCoroutineContext().isActive) {
             delay(Random.nextLong(MAXIMUM_RESPONSE_DELAY))
-//        if (Random.nextBoolean()) {
-//            throw Exception("Ошибка запроса", Throwable("Something went wrong"))
-//        }
+            if (Random.nextBoolean()) {
+                throw Exception("Ошибка запроса", Throwable("Something went wrong"))
+            }
             emit(responses.random())
         }
+    }
+
+    private companion object {
+        const val MAXIMUM_RESPONSE_DELAY = 5000L
     }
 }
