@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "ru.yandex.praktikumchatapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "ru.yandex.praktikumchatapp"
